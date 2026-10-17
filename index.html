@@ -1,419 +1,143 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#100d16">
-<title>NEW CHAPTER</title>
+<!-- NEW CHAPTER – Persönlicher Startfragebogen -->
+<section id="welcome" class="welcome">
+  <div class="welcome-card">
+    <h1>NEW CHAPTER 💜</h1>
+    <p>Jeder neue Weg beginnt mit einem Schritt.</p>
+    <p>Erzähl uns ein bisschen über dich.</p>
+
+    <form id="profileForm">
+      <label for="name">Wie heißt du?</label>
+      <input id="name" name="name" type="text"
+        placeholder="Dein Name" required>
+
+      <label for="drug">Welche Substanzen konsumierst du?</label>
+      <select id="drug" name="drug">
+        <option value="">Möchte ich nicht angeben</option>
+        <option>Keine</option>
+        <option>Cannabis</option>
+        <option>Alkohol</option>
+        <option>Nikotin</option>
+        <option>Medikamente ohne bestimmungsgemäße Anwendung</option>
+        <option>Andere Substanzen</option>
+        <option>Mehrere Substanzen</option>
+      </select>
+
+      <label for="frequency">Wie häufig konsumierst du?</label>
+      <select id="frequency" name="frequency">
+        <option value="">Möchte ich nicht angeben</option>
+        <option>Gar nicht mehr</option>
+        <option>Seltener als einmal pro Woche</option>
+        <option>Ein- bis zweimal pro Woche</option>
+        <option>Mehrmals pro Woche</option>
+        <option>Täglich</option>
+        <option>Unterschiedlich</option>
+      </select>
+
+      <label for="height">Wie groß bist du? (cm, freiwillig)</label>
+      <input id="height" name="height" type="number"
+        min="50" max="250" placeholder="z. B. 165">
+
+      <label for="weight">Wie viel wiegst du? (kg, freiwillig)</label>
+      <input id="weight" name="weight" type="number"
+        min="10" max="400" step="0.1" placeholder="Optional">
+
+      <label for="good">Was tut dir gut?</label>
+      <textarea id="good" name="good"
+        placeholder="z. B. Musik, Spaziergänge, Freunde, Ruhe ..."></textarea>
+
+      <button type="submit">Meine Reise beginnen 💜</button>
+    </form>
+  </div>
+</section>
+
+<section id="home" class="home" hidden>
+  <h1 id="greeting">Willkommen bei NEW CHAPTER 💜</h1>
+  <p>Du musst nicht alles heute schaffen.
+    Jeder kleine Schritt zählt.</p>
+
+  <div class="home-card">
+    <h2>Dein neuer Anfang</h2>
+    <p>Du bist hier, um deinen eigenen Weg zu gehen.</p>
+  </div>
+
+  <div class="home-card">
+    <h2>Daily Challenge</h2>
+    <p>Gehe heute zehn Minuten spazieren
+      oder nimm dir bewusst Zeit für dich.</p>
+  </div>
+</section>
+
 <style>
-:root {
-  --bg: #100d16;
-  --card: #1c1725;
-  --purple: #c7a5ff;
-  --text: #f8f3ff;
-  --muted: #bcb1ca;
-  --line: #3a2d49;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
+.welcome, .home {
   font-family: Arial, sans-serif;
+  color: #f8f3ff;
+  padding: 24px 16px;
 }
-.app {
-  max-width: 700px;
-  margin: auto;
-  padding: 18px;
+.welcome {
+  background: #100d16;
+  min-height: 100vh;
 }
-header {
-  padding: 15px 0;
-  font-weight: bold;
-  letter-spacing: 2px;
-  font-size: 21px;
-}
-header span, .purple { color: var(--purple); }
-h1 { font-size: 30px; }
-h2 { font-size: 20px; }
-p { color: var(--muted); line-height: 1.5; }
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 18px;
-  margin: 14px 0;
-}
-button, input, select, textarea {
-  font: inherit;
-  width: 100%;
-  padding: 12px;
-  border-radius: 11px;
-  margin: 5px 0;
-}
-button {
-  background: var(--purple);
-  color: #21152e;
-  border: 0;
-  font-weight: bold;
-  cursor: pointer;
-}
-.secondary {
-  background: #30243d;
-  color: white;
-  border: 1px solid var(--line);
-}
-input, select, textarea {
-  background: #120f18;
-  color: white;
-  border: 1px solid var(--line);
-}
-.nav {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  margin: 15px 0;
-}
-.nav button {
-  background: #241c30;
-  color: white;
-  font-size: 12px;
-}
-.page { display: none; }
-.page.active { display: block; }
-.moods {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-.mood {
+.welcome-card, .home-card {
   background: #211a2b;
+  border: 1px solid #453454;
+  border-radius: 20px;
+  padding: 22px;
+  margin: 12px auto;
+  max-width: 480px;
+}
+.welcome h1, .home h1 {
+  color: #d2b5ff;
+}
+.welcome label {
+  display: block;
+  margin-top: 17px;
+  margin-bottom: 7px;
+}
+.welcome input, .welcome select,
+.welcome textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #57466a;
+  border-radius: 10px;
+  background: #17121f;
   color: white;
-  border: 1px solid var(--line);
+  font-size: 16px;
 }
-.mood.selected {
-  border: 2px solid var(--purple);
+.welcome textarea {
+  min-height: 90px;
+  resize: vertical;
 }
-.contact {
-  padding: 12px;
-  border: 1px solid var(--line);
+.welcome button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 15px;
+  border: 0;
   border-radius: 12px;
-  margin-top: 10px;
-  overflow-wrap: anywhere;
+  background: #b994f5;
+  color: #1a1025;
+  font-weight: bold;
+  font-size: 16px;
 }
-.small { font-size: 12px; }
-.hidden { display: none !important; }
-label { display: block; margin-top: 12px; }
-footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-  padding: 20px;
+.home {
+  background: #100d16;
+  min-height: 100vh;
 }
 </style>
-</head>
-<body>
-<div class="app">
-<header>NEW <span>CHAPTER</span></header>
-
-<section id="auth">
-  <div class="card">
-    <h1>Dein neues Kapitel beginnt hier. 💜</h1>
-    <p>Ein Schritt nach dem anderen. Du musst nicht alles heute schaffen.</p>
-    <label>Name oder Spitzname</label>
-    <input id="loginName" placeholder="Dein Name">
-    <button onclick="enterApp()">Weiter zur App</button>
-    <p class="small">Dies ist eine Vorschau, noch keine sichere Online-Anmeldung.</p>
-  </div>
-</section>
-
-<section id="main" class="hidden">
-  <div class="card">
-    <h1 id="welcome">Schön, dass du da bist. 💜</h1>
-    <p>Du bist wichtig. Jeder kleine Schritt zählt.</p>
-  </div>
-
-  <nav class="nav">
-    <button onclick="showPage('home')">⌂ Start</button>
-    <button onclick="showPage('challenge')">✦ Daily Challenge</button>
-    <button onclick="showPage('checkin')">♡ Check-in</button>
-    <button onclick="showPage('profile')">◉ Profil</button>
-    <button onclick="showPage('people')">♧ Vertraute</button>
-    <button onclick="showPage('help')">✚ Hilfe</button>
-  </nav>
-
-  <section id="home" class="page active">
-    <div class="card">
-      <h2>Dein heutiger Fortschritt</h2>
-      <p>Check-in: <strong id="homeMood">Noch offen</strong></p>
-      <p>Challenge: <strong id="homeChallenge">Noch offen</strong></p>
-      <button onclick="showPage('challenge')">Challenge ansehen</button>
-      <button class="secondary" onclick="showPage('checkin')">Wie geht es mir?</button>
-    </div>
-    <div class="card">
-      <h2>Ein Gedanke für heute</h2>
-      <p>Du musst nicht perfekt sein. Es ist okay, Unterstützung zu brauchen.</p>
-    </div>
-  </section>
-
-  <section id="challenge" class="page">
-    <div class="card">
-      <p class="purple">DEINE DAILY CHALLENGE</p>
-      <h1 id="taskIcon">🚶</h1>
-      <h2 id="taskTitle">Geh 15 Minuten spazieren.</h2>
-      <p id="taskDescription">Wenn es sicher und möglich ist, geh eine kleine Runde an die frische Luft.</p>
-      <button onclick="completeTask()">✓ Aufgabe erledigt</button>
-      <button class="secondary" onclick="newTask()">Andere Aufgabe anzeigen</button>
-      <p id="taskResult"></p>
-    </div>
-    <div class="card">
-      <h2>Weitere Aufgaben</h2>
-      <p>🎵 Drei Lieblingslieder hören</p>
-      <p>📝 Drei Sätze über den Tag schreiben</p>
-      <p>🌳 Zeit draußen verbringen</p>
-      <p>💧 Ein Glas Wasser trinken</p>
-      <p>🧩 Ein Rätsel lösen</p>
-      <p>💬 Einer vertrauten Person schreiben</p>
-      <p>🌬️ Fünf Minuten ruhig atmen</p>
-      <p>📸 Ein Foto von etwas Schönem machen</p>
-    </div>
-  </section>
-
-  <section id="checkin" class="page">
-    <div class="card">
-      <h2>Wie geht es dir heute wirklich?</h2>
-      <p>Es gibt keine falsche Antwort.</p>
-      <div class="moods">
-        <button class="mood" onclick="chooseMood('Gut',this)">😊<br>Mir geht es gut</button>
-        <button class="mood" onclick="chooseMood('Geht so',this)">😐<br>Es geht so</button>
-        <button class="mood" onclick="chooseMood('Nicht gut',this)">😔<br>Mir geht es nicht gut</button>
-        <button class="mood" onclick="chooseMood('Hilfe nötig',this)">🆘<br>Ich brauche Hilfe</button>
-      </div>
-      <label>Was beschäftigt dich? (freiwillig)</label>
-      <textarea id="moodNote" rows="3" placeholder="Schreibe deine Gedanken auf ..."></textarea>
-      <button onclick="saveMood()">Check-in speichern</button>
-      <p id="moodResult"></p>
-      <div id="moodSupport" class="hidden">
-        <h2>Du musst damit nicht allein sein. 💜</h2>
-        <p>Kontaktiere eine vertraute Person oder öffne den Hilfebereich.</p>
-        <button class="secondary" onclick="showPage('people')">Vertraute Personen</button>
-        <button class="secondary" onclick="showPage('help')">Unterstützung finden</button>
-      </div>
-    </div>
-  </section>
-
-  <section id="profile" class="page">
-    <div class="card">
-      <h2>Mein Profil</h2>
-      <label>Name oder Spitzname</label>
-      <input id="profileName" placeholder="Dein Name">
-      <label>Größe in cm (freiwillig)</label>
-      <input id="height" type="number" min="50" max="250" placeholder="z. B. 165">
-      <label>Gesichtsfoto (freiwillig)</label>
-      <input id="photo" type="file" accept="image/*">
-      <img id="photoPreview" alt="Dein Profilfoto" style="max-width:100%;max-height:200px;border-radius:15px;display:none">
-      <button onclick="saveProfile()">Profil speichern</button>
-      <hr>
-      <h2>Tägliche Erinnerung</h2>
-      <p>Wann möchtest du an deinen Check-in erinnert werden?</p>
-      <input id="reminderTime" type="time" value="20:00">
-      <button onclick="setReminder()">Erinnerung einstellen</button>
-      <p id="reminderResult"></p>
-      <p class="small">Eine tägliche Push-Nachricht bei geschlossener Website benötigt eine zusätzliche Einrichtung.</p>
-    </div>
-  </section>
-
-  <section id="people" class="page">
-    <div class="card">
-      <h2>My Safe People 💜</h2>
-      <p>Füge Personen hinzu, denen du vertraust.</p>
-      <label>Name</label>
-      <input id="personName" placeholder="Name oder Spitzname">
-      <label>Telefonnummer</label>
-      <input id="personPhone" type="tel" placeholder="+49 ...">
-      <label>Rolle</label>
-      <select id="personRole">
-        <option>Vertraute Person</option>
-        <option>Freund/in</option>
-        <option>Familie</option>
-        <option>Betreuung</option>
-        <option>Beratungsstelle</option>
-      </select>
-      <button onclick="addPerson()">＋ Person hinzufügen</button>
-      <p id="peopleResult"></p>
-      <div id="peopleList"></div>
-    </div>
-  </section>
-
-  <section id="help" class="page">
-    <div class="card">
-      <h2>Du musst das nicht allein schaffen.</h2>
-      <p>Versuche, kurz Abstand von der Situation zu nehmen und eine vertraute Person zu kontaktieren.</p>
-      <div class="contact">
-        <h3>Akuter Notfall</h3>
-        <p>Wenn jemand unmittelbar in Gefahr ist, ruf 112.</p>
-        <a href="tel:112"><button>112 anrufen</button></a>
-      </div>
-      <div class="contact">
-        <h3>Suchtberatung</h3>
-        <p>Hier findest du Beratungsstellen in Deutschland.</p>
-        <a href="https://www.dhs.de/service/suchthilfeverzeichnis" target="_blank" rel="noopener" style="color:var(--purple)">Beratungsstelle finden ↗</a>
-      </div>
-      <div class="contact">
-        <h3>TelefonSeelsorge</h3>
-        <p>0800 1110111 · 0800 1110222 · 116 123</p>
-        <a href="tel:116123"><button class="secondary">116 123 anrufen</button></a>
-      </div>
-      <p class="small">NEW CHAPTER ersetzt keine medizinische oder therapeutische Beratung.</p>
-    </div>
-  </section>
-</section>
-
-<footer>NEW CHAPTER · Ein kleiner Schritt ist auch ein Schritt.<br>Demo-Version: Daten werden lokal gespeichert.</footer>
-</div>
 
 <script>
-const tasks = [
-  {icon:"🚶",title:"Geh 15 Minuten spazieren.",desc:"Wenn es sicher und möglich ist, geh eine kleine Runde an die frische Luft."},
-  {icon:"🎵",title:"Höre drei Lieblingslieder.",desc:"Nimm dir ein paar Minuten für Musik, die dir guttut."},
-  {icon:"📝",title:"Schreibe drei Sätze über deinen Tag.",desc:"Was war schwierig? Was war okay? Was möchtest du morgen versuchen?"},
-  {icon:"🌳",title:"Verbringe kurz Zeit draußen.",desc:"Geh an einen Ort, an dem du dich sicher fühlst."},
-  {icon:"💧",title:"Trink ein Glas Wasser.",desc:"Mach eine kleine Pause und kümmere dich um dich selbst."},
-  {icon:"🧩",title:"Löse ein Rätsel.",desc:"Gib deinen Gedanken für eine Weile eine andere Aufgabe."},
-  {icon:"💬",title:"Schreib einer vertrauten Person.",desc:"Ein einfaches „Wie geht's?“ reicht als Anfang."},
-  {icon:"🌬️",title:"Nimm dir fünf ruhige Minuten.",desc:"Atme in deinem eigenen Tempo und konzentriere dich auf deine Umgebung."},
-  {icon:"📸",title:"Mach ein Foto von etwas Schönem.",desc:"Halte einen kleinen Moment fest, der dir heute gefällt."},
-  {icon:"🧹",title:"Räume eine kleine Ecke auf.",desc:"Wähle etwas, das in wenigen Minuten machbar ist."}
-];
-let taskIndex = new Date().getDate() % tasks.length;
-let mood = "";
-let people = [];
-let completed = false;
-let reminderTimer = null;
+document.getElementById("profileForm")
+  .addEventListener("submit", function(event) {
+    event.preventDefault();
 
-function enterApp() {
-  const name = document.getElementById("loginName").value.trim();
-  document.getElementById("auth").classList.add("hidden");
-  document.getElementById("main").classList.remove("hidden");
-  document.getElementById("welcome").textContent =
-    name ? "Schön, dass du da bist, " + name + ". 💜" : "Schön, dass du da bist. 💜";
-  document.getElementById("profileName").value = name;
-  showPage("home");
-}
-function showPage(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function renderTask() {
-  const task = tasks[taskIndex];
-  document.getElementById("taskIcon").textContent = task.icon;
-  document.getElementById("taskTitle").textContent = task.title;
-  document.getElementById("taskDescription").textContent = task.desc;
-  document.getElementById("taskResult").textContent = "";
-}
-function newTask() {
-  taskIndex = (taskIndex + 1) % tasks.length;
-  renderTask();
-}
-function completeTask() {
-  completed = true;
-  document.getElementById("homeChallenge").textContent = "Erledigt ✓";
-  document.getElementById("taskResult").textContent =
-    "Geschafft! Du hast heute etwas für dich getan. 💜";
-}
-function chooseMood(value,button) {
-  mood = value;
-  document.querySelectorAll(".mood").forEach(b=>b.classList.remove("selected"));
-  button.classList.add("selected");
-}
-function saveMood() {
-  if (!mood) {
-    document.getElementById("moodResult").textContent = "Wähle zuerst aus, wie es dir geht.";
-    return;
-  }
-  document.getElementById("homeMood").textContent = mood;
-  document.getElementById("moodResult").textContent = "Dein Check-in wurde in dieser Demo gespeichert. 💜";
-  document.getElementById("moodSupport").classList.toggle("hidden",
-    mood !== "Nicht gut" && mood !== "Hilfe nötig");
-}
-function saveProfile() {
-  const name = document.getElementById("profileName").value.trim();
-  if (name) document.getElementById("welcome").textContent = "Schön, dass du da bist, " + name + ". 💜";
-  document.getElementById("reminderResult").textContent = "Profil für diese Sitzung aktualisiert.";
-}
-document.getElementById("photo").addEventListener("change",event=>{
-  const file=event.target.files[0];
-  if(!file) return;
-  if(!file.type.startsWith("image/")) return;
-  if(file.size>2*1024*1024){alert("Bitte ein Foto unter 2 MB auswählen.");return;}
-  const reader=new FileReader();
-  reader.onload=()=> {
-    const img=document.getElementById("photoPreview");
-    img.src=reader.result;img.style.display="block";
-  };
-  reader.readAsDataURL(file);
-});
-async function setReminder() {
-  const time = document.getElementById("reminderTime").value || "20:00";
-  let message = "Deine gewünschte Erinnerungszeit ist " + time + ".";
-  if ("Notification" in window) {
-    try {
-      const permission = await Notification.requestPermission();
-      if (permission === "granted") {
-        new Notification("NEW CHAPTER", {body:"Wie geht es dir heute? Zeit für deinen Check-in. 💜"});
-        message += " Eine Testbenachrichtigung wurde angefordert.";
-      } else {
-        message += " Benachrichtigungen sind nicht erlaubt.";
-      }
-    } catch(e) {
-      message += " Der Browser unterstützt diese Funktion hier möglicherweise nicht.";
-    }
-  } else {
-    message += " Dieser Browser unterstützt keine Web-Benachrichtigungen.";
-  }
-  document.getElementById("reminderResult").textContent =
-    message + " Eine tägliche Erinnerung im Hintergrund ist noch nicht eingerichtet.";
-}
-function addPerson() {
-  const name=document.getElementById("personName").value.trim();
-  const phone=document.getElementById("personPhone").value.trim();
-  const role=document.getElementById("personRole").value;
-  if(!name || !phone) {
-    document.getElementById("peopleResult").textContent="Bitte Name und Telefonnummer eingeben.";
-    return;
-  }
-  people.push({name,phone,role});
-  document.getElementById("personName").value="";
-  document.getElementById("personPhone").value="";
-  document.getElementById("peopleResult").textContent="Kontakt wurde hinzugefügt.";
-  renderPeople();
-}
-function renderPeople() {
-  const list=document.getElementById("peopleList");
-  list.innerHTML="";
-  people.forEach((person,index)=>{
-    const box=document.createElement("div");
-    box.className="contact";
-    const title=document.createElement("h3");
-    title.textContent=person.name;
-    const role=document.createElement("p");
-    role.textContent=person.role;
-    const phone=document.createElement("p");
-    phone.textContent=person.phone;
-    const call=document.createElement("a");
-    call.href="tel:"+person.phone.replace(/[^\d+*#,;]/g,"");
-    const button=document.createElement("button");
-    button.textContent="☎ Anrufen";
-    call.appendChild(button);
-    const remove=document.createElement("button");
-    remove.className="secondary";
-    remove.textContent="Kontakt entfernen";
-    remove.onclick=()=>{people.splice(index,1);renderPeople();};
-    box.append(title,role,phone,call,remove);
-    list.appendChild(box);
+    const name = document.getElementById("name").value.trim();
+
+    document.getElementById("greeting").textContent =
+      "Willkommen, " + name + " 💜";
+
+    document.getElementById("welcome").hidden = true;
+    document.getElementById("home").hidden = false;
+
+    window.scrollTo(0, 0);
   });
-}
-renderTask();
 </script>
-</body>
-</html>
