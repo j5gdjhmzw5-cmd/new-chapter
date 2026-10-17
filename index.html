@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100d16">
+<title>NEW CHAPTER</title>
+<style>
+:root {
+  --bg: #100d16;
+  --card: #1d1726;
+  --purple: #c7a5ff;
+  --text: #f8f3ff;
+  --muted: #b9adc8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 20px 16px 90px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+header { text-align: center; padding: 25px 0; }
+h1 { color: var(--purple); letter-spacing: 4px; }
+p { line-height: 1.6; }
+.card {
+  background: var(--card);
+  padding: 18px;
+  margin: 14px 0;
+  border-radius: 18px;
+  border: 1px solid #3a2d4b;
+}
+button, input, textarea, select {
+  font: inherit;
+  border-radius: 10px;
+  padding: 12px;
+}
+button {
+  border: none;
+  background: var(--purple);
+  color: #1b1127;
+  font-weight: bold;
+  cursor: pointer;
+}
+input, textarea, select {
+  width: 100%;
+  margin: 8px 0;
+  background: #120e19;
+  color: white;
+  border: 1px solid #3a2d4b;
+}
+.full { width: 100%; }
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  background: #1d1726;
+  padding: 10px 3px;
+}
+nav button { padding: 10px 5px; font-size: 11px; }
+.page { display: none; }
+.page.active { display: block; }
+.muted { color: var(--muted); }
+.quote { color: var(--purple); font-size: 19px; }
+.task { display: block; padding: 10px 0; }
+.task input { width: auto; }
+a { color: var(--purple); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>NEW CHAPTER</h1>
+  <p class="muted">Your story isn't over.</p>
+  <p>Ein neuer Tag. Ein kleiner Schritt. Eine neue Chance.</p>
+</header>
+
+<section id="home" class="page active">
+  <div class="card">
+    <p class="quote">„Du musst nicht alles heute schaffen. Ein Schritt reicht.“</p>
+    Du bist nicht allein. Hier kannst du deine Fortschritte sehen,
+    deine Gefühle verstehen und Unterstützung finden.
+  </div>
+  <div class="card">
+    <h2>🌱 My Progress</h2>
+    <p>Drogenfreie Tage, die du eingetragen hast:</p>
+    <h2 id="days">0</h2>
+    <button onclick="show('progress')">Fortschritt ansehen</button>
+  </div>
+  <div class="card">
+    <h2>💜 My Feelings</h2>
+    <button onclick="show('feelings')">Wie fühle ich mich?</button>
+  </div>
+  <div class="card">
+    <h2>✨ Daily Challenges</h2>
+    <button onclick="show('tasks')">Aufgaben öffnen</button>
+  </div>
+  <div class="card">
+    <h2>📓 My Journey</h2>
+    <button onclick="show('journey')">Meine Ziele</button>
+  </div>
+  <div class="card">
+    <h2>🤝 Get Help</h2>
+    <button onclick="show('help')">Hilfe finden</button>
+  </div>
+</section>
+
+<section id="progress" class="page">
+  <div class="card">
+    <h2>🌱 My Progress</h2>
+    <label for="date">Datum</label>
+    <input id="date" type="date">
+    <label for="note">Was hat mir heute geholfen?</label>
+    <textarea id="note" placeholder="Deine Gedanken ..."></textarea>
+    <button class="full" onclick="addProgress()">Tag speichern</button>
+    <p id="message"></p>
+    <div id="entries"></div>
+  </div>
+</section>
+
+<section id="feelings" class="page">
+  <div class="card">
+    <h2>💜 Wie fühlst du dich?</h2>
+    <select id="mood">
+      <option value="gestresst">😣 Gestresst</option>
+      <option value="traurig">😔 Traurig</option>
+      <option value="wuetend">😠 Wütend</option>
+      <option value="einsam">🫥 Einsam</option>
+      <option value="unruhig">😵‍💫 Unruhig</option>
+      <option value="okay">🙂 Okay</option>
+    </select>
+    <button class="full" onclick="getTip()">Tipps anzeigen</button>
+    <p id="tip"></p>
+  </div>
+</section>
+
+<section id="tasks" class="page">
+  <div class="card">
+    <h2>✨ Daily Challenges</h2>
+    <label class="task"><input type="checkbox"> Einer vertrauten Person schreiben</label>
+    <label class="task"><input type="checkbox"> Etwas trinken und essen</label>
+    <label class="task"><input type="checkbox"> Eine angenehme Aktivität machen</label>
+    <label class="task"><input type="checkbox"> Einen positiven Gedanken notieren</label>
+    <p class="muted">Du darfst Aufgaben auslassen oder später erledigen.</p>
+  </div>
+</section>
+
+<section id="journey" class="page">
+  <div class="card">
+    <h2>📓 My Journey</h2>
+    <label for="goal">Was möchte ich in meinem Leben verändern?</label>
+    <textarea id="goal" placeholder="Meine Ziele ..."></textarea>
+    <label for="reason">Warum ist mir das wichtig?</label>
+    <textarea id="reason" placeholder="Meine persönlichen Gründe ..."></textarea>
+    <button class="full" onclick="saveJourney()">Ziele speichern</button>
+    <p id="saved"></p>
+  </div>
+</section>
+
+<section id="help" class="page">
+  <div class="card">
+    <h2>🤝 Du musst das nicht allein schaffen</h2>
+    <p>Sprich mit einer Person, der du vertraust, oder hole dir professionelle Unterstützung.</p>
+    <p><a href="https://www.dhs.de/service/suchthilfeverzeichnis" target="_blank" rel="noopener">Suchtberatung in deiner Nähe</a></p>
+    <p><a href="https://www.suchtberatung.digital/" target="_blank" rel="noopener">Online-Suchtberatung</a></p>
+    <p><a href="https://www.telefonseelsorge.de/" target="_blank" rel="noopener">TelefonSeelsorge</a></p>
+    <p><strong>Bei einem medizinischen Notfall: 112.</strong></p>
+    <p class="muted">Bei körperlicher Abhängigkeit kann plötzliches Absetzen gefährlich sein. Lass dich medizinisch beraten.</p>
+  </div>
+</section>
+
+<nav>
+  <button onclick="show('home')">🏠 Home</button>
+  <button onclick="show('progress')">🌱 Fortschritt</button>
+  <button onclick="show('feelings')">💜 Gefühle</button>
+  <button onclick="show('tasks')">✨ Aufgaben</button>
+  <button onclick="show('help')">🤝 Hilfe</button>
+</nav>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.page').forEach(page =>
+    page.classList.remove('active')
+  );
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function safeText(value) {
+  const el = document.createElement('span');
+  el.textContent = value || '';
+  return el.innerHTML;
+}
+
+let progress = [];
+let journey = { goal: '', reason: '' };
+
+try {
+  progress = JSON.parse(localStorage.getItem('nc_progress') || '[]');
+  journey = JSON.parse(localStorage.getItem('nc_journey') ||
+    '{"goal":"","reason":""}');
+} catch (e) {}
+
+function renderProgress() {
+  document.getElementById('days').textContent = progress.length;
+  document.getElementById('entries').innerHTML = progress.map((p, i) =>
+    '<div class="card"><strong>' + safeText(p.date) +
+    '</strong><p>' + safeText(p.note) +
+    '</p><button onclick="deleteProgress(' + i +
+    ')">Eintrag löschen</button></div>'
+  ).join('');
+}
+
+function addProgress() {
+  const date = document.getElementById('date').value;
+  const note = document.getElementById('note').value.trim();
+  if (!date) {
+    document.getElementById('message').textContent =
+      'Bitte wähle ein Datum.';
+    return;
+  }
+  if (progress.some(p => p.date === date)) {
+    document.getElementById('message').textContent =
+      'Für dieses Datum gibt es bereits einen Eintrag.';
+    return;
+  }
+  progress.push({ date, note });
+  localStorage.setItem('nc_progress', JSON.stringify(progress));
+  document.getElementById('note').value = '';
+  document.getElementById('message').textContent =
+    'Eintrag gespeichert. Jeder Schritt zählt.';
+  renderProgress();
+}
+
+function deleteProgress(index) {
+  progress.splice(index, 1);
+  localStorage.setItem('nc_progress', JSON.stringify(progress));
+  renderProgress();
+}
+
+function getTip() {
+  const tips = {
+    gestresst: 'Suche einen sicheren, ruhigen Ort und sprich mit einer vertrauten Person.',
+    traurig: 'Du musst damit nicht allein bleiben. Melde dich bei jemandem, dem du vertraust.',
+    wuetend: 'Nimm, wenn möglich, etwas Abstand und atme langsam aus.',
+    einsam: 'Schreib einer Person, bei der du dich sicher fühlst.',
+    unruhig: 'Spüre deine Füße am Boden und benenne fünf Dinge, die du sehen kannst.',
+    okay: 'Schön, dass es gerade okay ist. Tu etwas, das dir guttut.'
+  };
+  document.getElementById('tip').textContent =
+    tips[document.getElementById('mood').value];
+}
+
+function saveJourney() {
+  journey = {
+    goal: document.getElementById('goal').value,
+    reason: document.getElementById('reason').value
+  };
+  localStorage.setItem('nc_journey', JSON.stringify(journey));
+  document.getElementById('saved').textContent = 'Ziele gespeichert.';
+}
+
+document.getElementById('goal').value = journey.goal || '';
+document.getElementById('reason').value = journey.reason || '';
+document.getElementById('date').value =
+  new Date().toISOString().slice(0, 10);
+renderProgress();
+</script>
+</body>
+</html>
