@@ -1,143 +1,581 @@
-<!-- NEW CHAPTER – Persönlicher Startfragebogen -->
-<section id="welcome" class="welcome">
-  <div class="welcome-card">
-    <h1>NEW CHAPTER 💜</h1>
-    <p>Jeder neue Weg beginnt mit einem Schritt.</p>
-    <p>Erzähl uns ein bisschen über dich.</p>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100d16">
+<title>NEW CHAPTER</title>
+
+<style>
+:root {
+  --bg:#100d16;
+  --card:#211a2b;
+  --purple:#c7a5ff;
+  --text:#f8f3ff;
+  --muted:#b9adc8;
+  --border:#44354f;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+}
+header {
+  text-align:center;
+  padding:24px 15px;
+  border-bottom:1px solid var(--border);
+}
+header h1 { color:var(--purple); letter-spacing:2px; margin:0; }
+header p,.muted { color:var(--muted); line-height:1.6; font-size:14px; }
+main { width:min(100% - 24px,600px); margin:20px auto; }
+.card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:19px;
+  margin-bottom:15px;
+}
+h2 { color:var(--purple); margin-top:0; }
+h3 { line-height:1.5; }
+label { display:block; margin:15px 0 7px; }
+input,select,textarea {
+  width:100%;
+  padding:13px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#17121f;
+  color:var(--text);
+  font:inherit;
+}
+input[type="file"] { font-size:14px; }
+textarea { min-height:85px; resize:vertical; }
+button {
+  border:0;
+  border-radius:11px;
+  padding:13px 15px;
+  background:var(--purple);
+  color:#21132d;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer;
+}
+button:disabled { opacity:.5; cursor:default; }
+.primary { width:100%; margin-top:17px; }
+.secondary {
+  background:#352741;
+  color:var(--text);
+  border:1px solid var(--border);
+}
+nav {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-bottom:16px;
+}
+nav button { min-height:48px; }
+.track {
+  height:9px;
+  background:#40334b;
+  border-radius:9px;
+  overflow:hidden;
+  margin:12px 0;
+}
+.bar {
+  height:100%;
+  width:0;
+  background:var(--purple);
+  transition:width .3s;
+}
+.big { font-size:27px; font-weight:bold; color:var(--purple); }
+.preview {
+  width:100%;
+  max-height:300px;
+  object-fit:contain;
+  border-radius:12px;
+  margin-top:12px;
+}
+[hidden] { display:none !important; }
+footer {
+  text-align:center;
+  padding:22px;
+  color:var(--muted);
+  font-size:12px;
+}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>NEW CHAPTER 💜</h1>
+  <p>Ein neuer Tag. Ein neuer Schritt. Deine Reise.</p>
+</header>
+
+<main>
+<!-- PERSÖNLICHER START -->
+<section id="welcome">
+  <div class="card">
+    <h2>Dein neues Kapitel</h2>
+    <p>Schön, dass du hier bist. Du darfst in deinem eigenen Tempo anfangen.</p>
 
     <form id="profileForm">
       <label for="name">Wie heißt du?</label>
-      <input id="name" name="name" type="text"
-        placeholder="Dein Name" required>
+      <input id="name" maxlength="50" required placeholder="Dein Name">
 
-      <label for="drug">Welche Substanzen konsumierst du?</label>
-      <select id="drug" name="drug">
-        <option value="">Möchte ich nicht angeben</option>
+      <label for="substance">Welche Substanzen möchtest du angeben?</label>
+      <select id="substance">
+        <option value="">Keine Angabe</option>
         <option>Keine</option>
         <option>Cannabis</option>
         <option>Alkohol</option>
         <option>Nikotin</option>
-        <option>Medikamente ohne bestimmungsgemäße Anwendung</option>
+        <option>Medikamente</option>
         <option>Andere Substanzen</option>
         <option>Mehrere Substanzen</option>
       </select>
 
       <label for="frequency">Wie häufig konsumierst du?</label>
-      <select id="frequency" name="frequency">
-        <option value="">Möchte ich nicht angeben</option>
-        <option>Gar nicht mehr</option>
-        <option>Seltener als einmal pro Woche</option>
+      <select id="frequency">
+        <option value="">Keine Angabe</option>
+        <option>Ich konsumiere nicht</option>
+        <option>Seltener als wöchentlich</option>
         <option>Ein- bis zweimal pro Woche</option>
         <option>Mehrmals pro Woche</option>
         <option>Täglich</option>
         <option>Unterschiedlich</option>
       </select>
 
-      <label for="height">Wie groß bist du? (cm, freiwillig)</label>
-      <input id="height" name="height" type="number"
-        min="50" max="250" placeholder="z. B. 165">
+      <label for="height">Körpergröße in cm (freiwillig)</label>
+      <input id="height" type="number" min="50" max="250" placeholder="Optional">
 
-      <label for="weight">Wie viel wiegst du? (kg, freiwillig)</label>
-      <input id="weight" name="weight" type="number"
-        min="10" max="400" step="0.1" placeholder="Optional">
+      <label for="weight">Gewicht in kg (freiwillig)</label>
+      <input id="weight" type="number" min="10" max="400" step="0.1" placeholder="Optional">
 
-      <label for="good">Was tut dir gut?</label>
-      <textarea id="good" name="good"
-        placeholder="z. B. Musik, Spaziergänge, Freunde, Ruhe ..."></textarea>
+      <label for="wellbeing">Was tut dir gut?</label>
+      <textarea id="wellbeing" placeholder="Musik, Ruhe, Bewegung, Hobbys ..."></textarea>
 
-      <button type="submit">Meine Reise beginnen 💜</button>
+      <label for="goal">Was möchtest du erreichen?</label>
+      <textarea id="goal" placeholder="Dein persönliches Ziel ..."></textarea>
+
+      <button class="primary" type="submit">Meine Reise beginnen →</button>
     </form>
+
+    <p class="muted">Die Angaben sind freiwillig, soweit sie nicht für die Anmeldung erforderlich sind. In diesem Prototyp gibt es noch kein echtes Benutzerkonto.</p>
   </div>
 </section>
 
-<section id="home" class="home" hidden>
-  <h1 id="greeting">Willkommen bei NEW CHAPTER 💜</h1>
-  <p>Du musst nicht alles heute schaffen.
-    Jeder kleine Schritt zählt.</p>
-
-  <div class="home-card">
-    <h2>Dein neuer Anfang</h2>
-    <p>Du bist hier, um deinen eigenen Weg zu gehen.</p>
+<!-- APP -->
+<section id="app" hidden>
+  <div class="card">
+    <h2 id="greeting">Willkommen 💜</h2>
+    <p id="today" class="muted"></p>
+    <p>Du musst nicht alles heute schaffen. Ein kleiner Schritt ist genug.</p>
   </div>
 
-  <div class="home-card">
-    <h2>Daily Challenge</h2>
-    <p>Gehe heute zehn Minuten spazieren
-      oder nimm dir bewusst Zeit für dich.</p>
-  </div>
+  <nav>
+    <button onclick="openPage('daily')">✨ Daily Challenge</button>
+    <button onclick="openPage('water')">💧 Wasser</button>
+    <button onclick="openPage('steps')">👟 Schritte</button>
+    <button onclick="openPage('checkin')">💜 Check-in</button>
+    <button onclick="openPage('progress')">🏆 Erfolge</button>
+    <button onclick="openPage('profile')">👤 Profil</button>
+    <button onclick="openPage('help')">🤝 Hilfe</button>
+  </nav>
+
+  <!-- DAILY CHALLENGE -->
+  <section id="daily" class="card page">
+    <h2>✨ Deine Daily Challenge</h2>
+    <p class="muted">Jeden Kalendertag wird eine Aufgabe ausgewählt.</p>
+    <p id="challengeNumber" class="muted"></p>
+    <h3 id="challengeText"></h3>
+
+    <label for="photo">Dein Motivationsfoto (freiwillig)</label>
+    <input id="photo" type="file" accept="image/*">
+    <img id="photoPreview" class="preview" alt="Fotovorschau" hidden>
+
+    <button id="completeBtn" class="primary" onclick="completeChallenge()">Aufgabe erledigt ✓</button>
+    <p id="dailyStatus" class="muted" aria-live="polite"></p>
+  </section>
+
+  <!-- WASSER -->
+  <section id="water" class="card page" hidden>
+    <h2>💧 Dein Wasser-Tracker</h2>
+    <p>Trage deine getrunkene Menge ein.</p>
+    <p><span id="waterValue" class="big">0</span> ml heute</p>
+
+    <label for="waterAmount">Getrunkene Menge in ml</label>
+    <input id="waterAmount" type="number" min="1" max="5000" placeholder="z. B. 250">
+    <button class="primary" onclick="addWater()">Menge hinzufügen</button>
+
+    <div class="track"><div id="waterBar" class="bar"></div></div>
+    <p id="waterStatus" class="muted"></p>
+
+    <p class="muted">Das Ziel ist anpassbar und nur eine Orientierung. Trinke regelmäßig nach deinem Durst; du musst keine bestimmte Menge erzwingen.</p>
+
+    <label for="waterGoal">Dein Orientierungsziel in ml</label>
+    <input id="waterGoal" type="number" min="250" max="6000" value="1500">
+    <button class="secondary" onclick="updateWaterGoal()">Ziel aktualisieren</button>
+  </section>
+
+  <!-- SCHRITTE -->
+  <section id="steps" class="card page" hidden>
+    <h2>👟 Deine Schritte</h2>
+    <p>Du kannst deine Schrittzahl vom iPhone oder einem Schrittzähler eintragen.</p>
+
+    <label for="stepInput">Schritte heute</label>
+    <input id="stepInput" type="number" min="0" max="100000" placeholder="z. B. 3200">
+    <button class="primary" onclick="saveSteps()">Schrittzahl speichern</button>
+
+    <p class="big" id="stepValue">0 Schritte</p>
+    <div class="track"><div id="stepBar" class="bar"></div></div>
+    <p id="stepStatus" class="muted">Jede Bewegung zählt. Du musst niemanden übertreffen.</p>
+
+    <label for="stepGoal">Dein persönliches Tagesziel</label>
+    <input id="stepGoal" type="number" min="100" max="100000" value="5000">
+    <button class="secondary" onclick="updateStepGoal()">Ziel aktualisieren</button>
+  </section>
+
+  <!-- CHECK-IN -->
+  <section id="checkin" class="card page" hidden>
+    <h2>💜 Wie geht es dir?</h2>
+
+    <label for="mood">Deine Stimmung</label>
+    <select id="mood">
+      <option>🙂 Gut</option>
+      <option>😐 Ganz okay</option>
+      <option>😔 Traurig</option>
+      <option>😠 Wütend</option>
+      <option>😰 Gestresst</option>
+      <option>😞 Überfordert</option>
+    </select>
+
+    <label for="thoughts">Was beschäftigt dich?</label>
+    <textarea id="thoughts" placeholder="Du kannst deine Gedanken aufschreiben ..."></textarea>
+
+    <button class="primary" onclick="saveCheckin()">Check-in abschließen</button>
+    <p id="checkinStatus" class="muted" aria-live="polite"></p>
+  </section>
+
+  <!-- ERFOLGE -->
+  <section id="progress" class="card page" hidden>
+    <h2>🏆 Deine Erfolge</h2>
+    <p>Heute erledigte Challenge:</p>
+    <p class="big" id="doneCount">0</p>
+    <p id="progressMessage">Jeder kleine Schritt zählt.</p>
+    <h3>Dein Motivationsfoto</h3>
+    <img id="savedPhoto" class="preview" alt="Dein Motivationsfoto" hidden>
+    <p class="muted">Fotos werden in dieser Demo nur während der aktuellen Sitzung angezeigt.</p>
+  </section>
+
+  <!-- PROFIL -->
+  <section id="profile" class="card page" hidden>
+    <h2>👤 Mein Profil</h2>
+    <p id="profileName"></p>
+    <p id="profileGoal" class="muted"></p>
+    <p class="muted">Sensible Angaben werden in diesem Prototyp nicht gespeichert. Für dauerhafte Profile brauchst du später eine geschützte Datenbank und echte Benutzerkonten.</p>
+    <button class="secondary" onclick="openPage('daily')">Zurück zur Challenge</button>
+  </section>
+
+  <!-- HILFE -->
+  <section id="help" class="card page" hidden>
+    <h2>🤝 Du musst nicht allein sein</h2>
+    <p>Wenn du wütend, traurig oder überfordert bist:</p>
+    <ul>
+      <li>Geh an einen sicheren, ruhigen Ort.</li>
+      <li>Atme langsam und gönne dir eine Pause.</li>
+      <li>Schreibe einer Vertrauensperson oder ruf sie an.</li>
+      <li>Überlege, welcher kleine Schritt dir jetzt guttun könnte.</li>
+    </ul>
+    <h3>TelefonSeelsorge (Deutschland)</h3>
+    <p>0800 1110111</p>
+    <p>0800 1110222</p>
+    <p>116 123</p>
+    <p class="muted">Kostenlos und rund um die Uhr erreichbar.</p>
+    <p>Bei unmittelbarer Gefahr: <strong>112</strong>.</p>
+    <p class="muted">Bei Problemen mit Drogen kannst du dich auch an eine örtliche Suchtberatungsstelle wenden.</p>
+  </section>
 </section>
+</main>
 
-<style>
-.welcome, .home {
-  font-family: Arial, sans-serif;
-  color: #f8f3ff;
-  padding: 24px 16px;
-}
-.welcome {
-  background: #100d16;
-  min-height: 100vh;
-}
-.welcome-card, .home-card {
-  background: #211a2b;
-  border: 1px solid #453454;
-  border-radius: 20px;
-  padding: 22px;
-  margin: 12px auto;
-  max-width: 480px;
-}
-.welcome h1, .home h1 {
-  color: #d2b5ff;
-}
-.welcome label {
-  display: block;
-  margin-top: 17px;
-  margin-bottom: 7px;
-}
-.welcome input, .welcome select,
-.welcome textarea {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #57466a;
-  border-radius: 10px;
-  background: #17121f;
-  color: white;
-  font-size: 16px;
-}
-.welcome textarea {
-  min-height: 90px;
-  resize: vertical;
-}
-.welcome button {
-  width: 100%;
-  margin-top: 24px;
-  padding: 15px;
-  border: 0;
-  border-radius: 12px;
-  background: #b994f5;
-  color: #1a1025;
-  font-weight: bold;
-  font-size: 16px;
-}
-.home {
-  background: #100d16;
-  min-height: 100vh;
-}
-</style>
+<footer>NEW CHAPTER · Jeder Schritt zählt 💜</footer>
 
 <script>
-document.getElementById("profileForm")
-  .addEventListener("submit", function(event) {
-    event.preventDefault();
+const challenges = [
+"Gehe zehn Minuten spazieren und nimm deine Umgebung bewusst wahr.",
+"Höre ein Lied, das dir guttut.",
+"Schreibe drei Dinge auf, die du heute geschafft hast.",
+"Räume eine kleine Ecke deines Zimmers auf.",
+"Mache fünf Minuten Pause ohne Ablenkung.",
+"Schreibe einer Person, bei der du dich wohlfühlst.",
+"Trinke in Ruhe etwas Wasser und gönne dir eine Pause.",
+"Probiere ein neues Hobby aus oder beschäftige dich mit deinem Lieblingshobby.",
+"Schreibe auf, was dich heute zum Lächeln gebracht hat.",
+"Öffne das Fenster und lass frische Luft herein.",
+"Dehne dich einige Minuten ganz entspannt.",
+"Höre einen Podcast oder etwas Interessantes.",
+"Schreibe eine Sache auf, auf die du stolz bist.",
+"Gehe an einen Ort, an dem du dich wohlfühlst.",
+"Male, zeichne oder kritzle etwas.",
+"Schreibe eine freundliche Nachricht an dich selbst.",
+"Lege dein Handy für zehn Minuten beiseite.",
+"Plane eine kleine Aktivität, auf die du dich freust.",
+"Gehe ein paar Minuten an die frische Luft.",
+"Schreibe auf, was dir heute wichtig ist.",
+"Ordne deine Tasche oder deinen Rucksack.",
+"Mach dein Bett und gestalte deinen Raum gemütlich.",
+"Suche ein neues Lied, das du noch nicht kennst.",
+"Notiere einen kleinen Wunsch für die kommende Woche.",
+"Verbringe zehn Minuten mit einem Hobby.",
+"Schreibe drei Dinge auf, für die du dankbar bist.",
+"Mach eine kurze Pause und entspanne deine Schultern.",
+"Sortiere fünf Dinge aus, die du nicht mehr brauchst.",
+"Bereite deine Kleidung für morgen vor.",
+"Notiere eine Sache, die du gerne lernen möchtest.",
+"Schreibe auf, was dir bei Stress helfen kann.",
+"Gehe einen kleinen Weg zu Fuß, wenn es sicher möglich ist.",
+"Verbringe etwas Zeit mit einem Haustier, falls du eines hast.",
+"Rufe eine Vertrauensperson an oder schreibe ihr.",
+"Schreibe einen Brief an dein zukünftiges Ich.",
+"Finde einen ruhigen Platz und beobachte deine Umgebung.",
+"Lege eine kurze Bildschirmpause ein.",
+"Suche ein inspirierendes Zitat und schreibe es auf.",
+"Plane eine kleine Belohnung für deinen Einsatz.",
+"Erledige eine kleine Aufgabe, die du aufgeschoben hast.",
+"Überlege, welche Gewohnheit du gerne aufbauen möchtest.",
+"Schreibe auf, was dir in schwierigen Momenten Sicherheit gibt.",
+"Probiere eine einfache Atemübung aus.",
+"Schau dir ein lustiges Video an, wenn dir danach ist.",
+"Gestalte eine kleine Motivationsliste.",
+"Verbringe fünf Minuten im Tageslicht.",
+"Schreibe auf, welche Stärken du an dir schätzt.",
+"Sortiere Fotos, die schöne Erinnerungen wecken.",
+"Plane deine Aufgaben für morgen in drei kleinen Schritten.",
+"Mach eine Pause und achte darauf, wie du dich fühlst.",
+"Gehe eine Runde spazieren und dokumentiere deinen Weg mit einem Foto.",
+"Fotografiere etwas Schönes, das du heute entdeckst.",
+"Schreibe auf, was du in diesem Monat erreichen möchtest.",
+"Suche dir einen Gegenstand, der dich an dein Ziel erinnert.",
+"Räume deinen Schreibtisch ein wenig auf.",
+"Finde fünf Dinge in deiner Umgebung, die du sehen kannst.",
+"Schreibe auf, wem du dich anvertrauen könntest.",
+"Überlege, welche Situation dir heute Energie gegeben hat.",
+"Erstelle eine Playlist für schwierige Tage.",
+"Mach eine kleine Pause und trinke etwas, wenn du Durst hast.",
+"Schreibe auf, was du an dir nicht verändern möchtest.",
+"Plane eine Aktivität, die du alleine genießen kannst.",
+"Entdecke eine Straße oder einen Weg in deiner Umgebung.",
+"Verbringe ein paar Minuten mit Lesen.",
+"Notiere einen Erfolg aus der vergangenen Woche.",
+"Schreibe eine Sache auf, die du heute loslassen möchtest.",
+"Überlege dir eine freundliche Antwort auf einen strengen Gedanken.",
+"Organisiere deine Notizen oder deinen Kalender.",
+"Probiere eine kurze geführte Entspannung aus.",
+"Gehe ein paar Minuten in deinem eigenen Tempo.",
+"Schreibe auf, was du bei Langeweile ausprobieren könntest.",
+"Finde eine Aktivität, die deine Hände beschäftigt, etwa Zeichnen.",
+"Mach ein Foto von etwas, das dir Freude bereitet.",
+"Notiere eine Grenze, die dir wichtig ist.",
+"Schreibe drei Ideen auf, wie du dich nach einem stressigen Tag erholen kannst.",
+"Überlege, welche Person dir ein gutes Gefühl gibt.",
+"Erstelle eine Liste mit Dingen, die du gerne ausprobieren würdest.",
+"Richte dir eine gemütliche Ecke zum Entspannen ein.",
+"Überlege, was du tun kannst, bevor du impulsiv reagierst.",
+"Schreibe auf, welche Unterstützung du dir wünschen würdest.",
+"Mach einen kleinen Schritt bei einem persönlichen Ziel.",
+"Suche Informationen zu einer Beratungsstelle, falls du Unterstützung möchtest.",
+"Schreibe auf, was dich motiviert, etwas zu verändern.",
+"Überlege, welche Situationen deinen Konsumwunsch auslösen können, ohne dich dafür zu verurteilen.",
+"Notiere eine sichere Alternative für einen schwierigen Moment.",
+"Überlege, wen du kontaktieren kannst, wenn du Unterstützung brauchst.",
+"Schreibe eine Liste mit Aktivitäten, die dich vom Grübeln ablenken.",
+"Plane für morgen eine Sache, die dir guttut.",
+"Verbringe zehn Minuten mit einer kreativen Beschäftigung.",
+"Notiere einen Gedanken, den du heute hilfreicher formulieren möchtest.",
+"Mach eine kleine Pause, bevor du deine nächste Aufgabe beginnst.",
+"Schreibe auf, was du an deinem bisherigen Weg gelernt hast.",
+"Überlege, was du einem guten Freund in deiner Situation sagen würdest.",
+"Fotografiere etwas, das für dich einen Neuanfang symbolisiert.",
+"Schreibe einen Satz, der dich an deinen eigenen Wert erinnert.",
+"Überlege, welche Veränderung du ohne Druck ausprobieren möchtest.",
+"Feiere einen kleinen Erfolg von heute.",
+"Schreibe auf, was du morgen anders oder genauso machen möchtest.",
+"Erstelle eine Liste mit fünf Dingen, die dir in schwierigen Zeiten helfen.",
+"Erinnere dich daran: Ein schwieriger Tag macht deine Fortschritte nicht zunichte."
+];
 
-    const name = document.getElementById("name").value.trim();
+let sessionName = "";
+let sessionGoal = "";
+let water = 0;
+let waterGoal = 1500;
+let steps = 0;
+let stepGoal = 5000;
+let completed = false;
+let photoURL = "";
+let sessionMood = "";
+let sessionThoughts = "";
 
-    document.getElementById("greeting").textContent =
-      "Willkommen, " + name + " 💜";
+function dayKey() {
+  const d = new Date();
+  return d.getFullYear() + "-" +
+    String(d.getMonth()+1).padStart(2,"0") + "-" +
+    String(d.getDate()).padStart(2,"0");
+}
 
-    document.getElementById("welcome").hidden = true;
-    document.getElementById("home").hidden = false;
+function showChallenge() {
+  const day = Math.floor(
+    (new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()) -
+     new Date(new Date().getFullYear(),0,0)) / 86400000
+  );
+  const index = (day - 1) % challenges.length;
 
-    window.scrollTo(0, 0);
-  });
+  document.getElementById("challengeNumber").textContent =
+    "Challenge " + (index + 1) + " von " + challenges.length;
+
+  document.getElementById("challengeText").textContent =
+    challenges[index];
+
+  document.getElementById("completeBtn").disabled = completed;
+  document.getElementById("dailyStatus").textContent =
+    completed ? "Heute als erledigt markiert 💜" : "Du schaffst das in deinem Tempo.";
+  document.getElementById("doneCount").textContent = completed ? "1" : "0";
+  document.getElementById("progressMessage").textContent =
+    completed ? "Du hast deine heutige Aufgabe erledigt. Gut gemacht!" :
+    "Deine heutige Aufgabe wartet auf dich.";
+}
+
+function showHome() {
+  document.getElementById("welcome").hidden = true;
+  document.getElementById("app").hidden = false;
+  document.getElementById("greeting").textContent =
+    "Willkommen, " + sessionName + " 💜";
+  document.getElementById("profileName").textContent =
+    "Name: " + sessionName;
+  document.getElementById("profileGoal").textContent =
+    "Dein Ziel: " + (sessionGoal || "Noch nicht angegeben");
+  document.getElementById("today").textContent =
+    new Date().toLocaleDateString("de-DE", {
+      weekday:"long",day:"numeric",month:"long"
+    });
+  showChallenge();
+  updateWater();
+  updateSteps();
+}
+
+document.getElementById("profileForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  sessionName = document.getElementById("name").value.trim();
+  sessionGoal = document.getElementById("goal").value.trim();
+  if (!sessionName) return;
+  showHome();
+  window.scrollTo(0,0);
+});
+
+function openPage(id) {
+  document.querySelectorAll(".page").forEach(el => el.hidden = el.id !== id);
+  window.scrollTo(0,0);
+}
+
+document.getElementById("photo").addEventListener("change", function(e) {
+  if (photoURL) URL.revokeObjectURL(photoURL);
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  if (!file.type.startsWith("image/")) {
+    alert("Bitte wähle eine Bilddatei aus.");
+    e.target.value = "";
+    return;
+  }
+  if (file.size > 8 * 1024 * 1024) {
+    alert("Das Bild ist zu groß. Bitte wähle ein Bild unter 8 MB.");
+    e.target.value = "";
+    return;
+  }
+  photoURL = URL.createObjectURL(file);
+  document.getElementById("photoPreview").src = photoURL;
+  document.getElementById("photoPreview").hidden = false;
+  document.getElementById("savedPhoto").src = photoURL;
+  document.getElementById("savedPhoto").hidden = false;
+});
+
+function completeChallenge() {
+  completed = true;
+  showChallenge();
+}
+
+function updateWater() {
+  document.getElementById("waterValue").textContent = water;
+  document.getElementById("waterBar").style.width =
+    Math.min(100,water / Math.max(1,waterGoal) * 100) + "%";
+  document.getElementById("waterStatus").textContent =
+    water >= waterGoal ? "Dein eingestelltes Tagesziel ist erreicht." :
+    "Noch " + Math.max(0,waterGoal-water) + " ml bis zu deinem eingestellten Ziel.";
+}
+
+function addWater() {
+  const input = document.getElementById("waterAmount");
+  const amount = Number(input.value);
+  if (!Number.isFinite(amount) || amount <= 0 || amount > 5000) {
+    alert("Bitte gib eine gültige Menge zwischen 1 und 5000 ml ein.");
+    return;
+  }
+  water += Math.round(amount);
+  input.value = "";
+  updateWater();
+}
+
+function updateWaterGoal() {
+  const goal = Number(document.getElementById("waterGoal").value);
+  if (!Number.isFinite(goal) || goal < 250 || goal > 6000) {
+    alert("Bitte gib ein Ziel zwischen 250 und 6000 ml ein.");
+    return;
+  }
+  waterGoal = goal;
+  updateWater();
+}
+
+function updateSteps() {
+  document.getElementById("stepValue").textContent =
+    steps.toLocaleString("de-DE") + " Schritte";
+  document.getElementById("stepInput").value = steps;
+  document.getElementById("stepBar").style.width =
+    Math.min(100,steps / Math.max(1,stepGoal) * 100) + "%";
+  document.getElementById("stepStatus").textContent =
+    steps >= stepGoal ? "Dein persönliches Ziel ist erreicht!" :
+    "Noch " + Math.max(0,stepGoal-steps).toLocaleString("de-DE") +
+    " Schritte bis zu deinem Ziel. Jede Bewegung zählt.";
+}
+
+function saveSteps() {
+  const input = document.getElementById("stepInput");
+  const value = Number(input.value);
+  if (!Number.isInteger(value) || value < 0 || value > 100000) {
+    alert("Bitte gib eine ganze Schrittzahl zwischen 0 und 100000 ein.");
+    return;
+  }
+  steps = value;
+  updateSteps();
+}
+
+function updateStepGoal() {
+  const goal = Number(document.getElementById("stepGoal").value);
+  if (!Number.isInteger(goal) || goal < 100 || goal > 100000) {
+    alert("Bitte gib ein Ziel zwischen 100 und 100000 Schritten ein.");
+    return;
+  }
+  stepGoal = goal;
+  updateSteps();
+}
+
+function saveCheckin() {
+  sessionMood = document.getElementById("mood").value;
+  sessionThoughts = document.getElementById("thoughts").value;
+  document.getElementById("checkinStatus").textContent =
+    "Danke, dass du dir Zeit für dich genommen hast 💜 Deine Stimmung: " +
+    sessionMood + ". Deine Angaben bleiben nur in dieser Sitzung.";
+}
+
+// Keine automatischen Speicherung sensibler Angaben.
+// Die Werte dieser Demo bleiben im Arbeitsspeicher der aktuellen Seite.
 </script>
+</body>
+</html>
